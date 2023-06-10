@@ -1,0 +1,13 @@
+.app {
+  background-color: #333D51;
+  color: #F4F3EA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+input {
+  border-radius: 5px;
+}
