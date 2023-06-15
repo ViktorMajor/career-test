@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
-import TestResultContext from "./TestResultContext";
-import "../styles/Skills.css";
+import { UserContext } from "../App";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Skills = ({ loggedInUser, setShowSkillsTest }) => {
-  const { setTestResults } = useContext(TestResultContext); // get the setTestResults function from context
+const Skills = () => {
+  let navigate = useNavigate();
+
   const [answers, setAnswers] = useState({});
-  const [showResult, setShowResult] = useState(false);
-  const [result, setResult] = useState({});
+
   const questions = [
     "Papírlapból alakzatok hajtogatása",
     "Számok összeadása fejben",
@@ -47,9 +48,6 @@ const Skills = ({ loggedInUser, setShowSkillsTest }) => {
     { name: "Együttműködő képesség", questions: [4, 9, 14, 19, 24, 29] },
     { name: "Kommunikációs képesség", questions: [5, 10, 15, 20, 25, 30] },
   ];
-  const handleBackButtonClick = () => {
-    setShowSkillsTest(false);
-  };
 
   const handleInputChange = (question, value) => {
     setAnswers((prevAnswers) => ({
@@ -82,63 +80,42 @@ const Skills = ({ loggedInUser, setShowSkillsTest }) => {
     return results;
   };
 
+
+
+  const { user, setUser } = useContext(UserContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const result = evaluateResult();
-    setResult(result);
-    setShowResult(true);
-  
-    if (localStorage.hasOwnProperty(loggedInUser)) {
-      const updatedUser = JSON.parse(localStorage.getItem(loggedInUser));
-      updatedUser.orientationTestResult = result;
-  
-      localStorage.setItem(loggedInUser, JSON.stringify(updatedUser));
-    }
-  
-    // Store the test results under "skills"
-    localStorage.setItem("Készségek teszt", JSON.stringify(result));
-  
-    
-  
-    // Log all the localStorage data to the console
-    console.log("Összes mentett adat:");
-    for (let i = 0; i < localStorage.length; i++){
-      let key = localStorage.key(i);
-      console.log(`${key}: ${localStorage.getItem(key)}`);
-    }
-  
-    // Update the context with the test results
-    setTestResults(result); // set the test results in context
+   
+    const evaluatedResult = evaluateResult();
+    setUser({
+      ...user,
+      skills: {
+        ...user.skills,
+        ...evaluatedResult,
+      },
+    });
+    navigate("/home");
   };
   
+  
 
-  if (showResult) {
-    return (
-      <div className="skills-results">
-       
-       
-      </div>
-    );
-  }
 
   return (
     <div>
-     
-   
-      
       <form onSubmit={handleSubmit} className="form-container">
-      <button onClick={handleBackButtonClick} className="back-button">
-        Vissza
-      </button>
-      <h2 className="form-heading">Képességek, készségek teszt </h2>
-      <p>
-        A pályaválasztási döntés meghozatalánál érdemes figyelembe venni, hogy a
-        képességek nagymértékben befolyásolják, mennyire vagyunk eredményesek,
-        sikeresek a pályánkon. A kérdőív segít meghatározni, hogy milyen
-        mértékben rendelkezik a munkavállalás szempontjából legfontosabb
-        képességekkel.
-      </p>
-        
+        <Link to="/home">
+          <button className="back-button">Vissza</button>
+        </Link>
+        <h2 className="form-heading">Képességek, készségek teszt</h2>
+        <p>
+          A pályaválasztási döntés meghozatalánál érdemes figyelembe venni, hogy
+          a képességek nagymértékben befolyásolják, mennyire vagyunk
+          eredményesek, sikeresek a pályánkon. A kérdőív segít meghatározni,
+          hogy milyen mértékben rendelkezik a munkavállalás szempontjából
+          legfontosabb képességekkel.
+        </p>
+
         <div className="column">
           {questions.map((question, index) => (
             <div key={index} className="question-container">

@@ -1,73 +1,45 @@
-import React, { useEffect, useState } from "react";
-import "../styles/Profile.css";
-//import Api from "./Api";
+import React, { useContext } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { UserContext } from '../App';
 
 const Profile = () => {
-  const [userData, setUserData] = useState({});
-  const [storageKey, setStorageKey] = useState(Date.now());
-  const [isVisible, setIsVisible] = useState(false);
+  const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    const updatedData = {};
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      const value = JSON.parse(localStorage.getItem(key));
-      updatedData[key] = value;
-    }
-    setUserData(updatedData);
-  }, [storageKey]);
+  if (!user || !user.bigFive || !user.skills) {
+    return <div>Loading...</div>;
+  }
 
-  const formatData = (data) => {
-    if (typeof data === "string") {
-      return data;
-    }
-    if (typeof data === "object") {
-      return Object.entries(data)
-        .map(([key, value]) => `${key}: ${value}`)
-        .join(", ");
-    }
+  const bigFiveData = {
+    labels: Object.keys(user.bigFive),
+    datasets: [{
+      label: 'Big Five Scores',
+      data: Object.values(user.bigFive).map(item => item.score),
+      backgroundColor: 'blue',
+    }],
   };
 
-  const handleStorageChange = () => {
-    setStorageKey(Date.now());
-  };
-
-  useEffect(() => {
-    window.addEventListener("storage", handleStorageChange);
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-    handleStorageChange();
+  const skillsData = {
+    labels: Object.keys(user.skills),
+    datasets: [{
+      label: 'Skills Performance',
+      data: Object.values(user.skills),
+      backgroundColor: 'red',
+    }],
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-header">
-        <h2>Profil adatok:</h2>
-        <button onClick={toggleVisibility} className="profile-button">
-          {isVisible ? "Rejtsd el!" : "Mutasd!"}
-        </button>
-      </div>
-      {isVisible && (
-        <div className="profile-data">
-          {Object.entries(userData)
-            .filter(([key]) => key !== "név" && key !== "password")
-            .map(([key, value]) => (
-              <p key={key} className="profile-item">
-                <strong className="profile-key">{key}:</strong>{" "}
-                <span className="profile-value">{formatData(value)}</span>
-              </p>
-            ))}
-        </div>
-      )}
-      <div className="api">
-        <button>Kérem a kiértékelést!</button>
-      </div>
-      
+    <div>
+      <h2>Profile Information</h2>
+      <p><strong>Név:</strong> {user.profileData.name}</p>
+      <p><strong>Kor:</strong> {user.profileData.age}</p>
+      <p><strong>Nem:</strong> {user.profileData.gender}</p>
+      <p><strong>Végzettség:</strong> {user.profileData.education}</p>
+
+      <h2>Big Five Results</h2>
+      <Bar data={bigFiveData} options={{ responsive: true }} />
+
+      <h2>Képességek</h2>
+      <Bar data={skillsData} options={{ responsive: true }} />
     </div>
   );
 };

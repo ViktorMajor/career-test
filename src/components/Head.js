@@ -1,13 +1,12 @@
-import React from 'react';
-import "../styles/Head.css";
+import React from "react";
 
-function Head({ navigate }) {
+
+function Head () {
   return (
-    <header className="header">
-      <h1>Pályaorientáció</h1>
-    
-    </header>
-  );
+    <div>
+      <h1> Pályaorientáció tanácsadás</h1>
+    </div>
+  )
 }
 
-export default Head;
+export default Head

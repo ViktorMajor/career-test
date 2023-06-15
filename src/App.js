@@ -1,30 +1,42 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Head from './components/Head'
 import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
-import Head from "./components/Head";
-import "./styles/RegistrationForm.css";
-import TestResultContext from './components/TestResultContext';
+import SignUpForm from './components/SignUpForm'
+import Big5 from './components/Big5'
+import Skills from "./components/Skills";
 
-
-function App() {
-  const [page, setPage] = useState('landing');
-  const [testResults, setTestResults] = useState({}); // Add a new state for test results
-
-  const handleNavigation = (page) => {
-    setPage(page);
-  };
+export const UserContext = createContext();
+export function UserProvider({ children }) {
+  const [user, setUser] = useState({
+    profileData: {},
+    bigFive: {}
+  });
 
   return (
-    <TestResultContext.Provider value={{ testResults, setTestResults }}>
-      <div className="app">
-        <Head />
-        {page === 'landing' && <LandingPage navigate={handleNavigation} />}
-        {page === 'home' && <Home />}
-        <div className="result">
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
 
+function App() {
+  return (
+    <UserProvider>  
+      <Router>
+        <div className="App">
+          <Head/>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home/*" element={<Home />} />
+            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/big5" element={<Big5 />} />
+            <Route path="/skills" element={<Skills />} />
+          </Routes>
         </div>
-      </div>
-    </TestResultContext.Provider>
+      </Router>
+    </UserProvider>
   );
 }
 
