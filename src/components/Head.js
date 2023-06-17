@@ -3,7 +3,7 @@ import React from "react";
 
 function Head () {
   return (
-    <div>
+    <div className="header">
       <h1> Pályaorientáció tanácsadás</h1>
     </div>
   )

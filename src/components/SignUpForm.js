@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 function SignUpForm() {
   const { setUser } = useContext(UserContext);
@@ -28,55 +31,61 @@ function SignUpForm() {
   };
 
   return (
-    <div>
+    <Container className="signup-container">
       <h1>Személyes adatok rögzítése</h1>
-      <form onSubmit={handleSignUp}>
-        <input
-          type="text"
-          placeholder="Név"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Kor"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          required
-        />
-
-        <label>
-          Legmagasabb iskolai végzettség:
-          <select
+      <Form onSubmit={handleSignUp}>
+        <Form.Group controlId="formBasicName">
+          <Form.Control
+            type="text"
+            placeholder="Név"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </Form.Group>
+        
+        <Form.Group controlId="formBasicAge">
+          <Form.Control
+            type="number"
+            placeholder="Kor"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            required
+          />
+        </Form.Group>
+  
+        <Form.Group controlId="formBasicEducation">
+          <Form.Control 
+            as="select" 
             value={education}
             onChange={(e) => setEducation(e.target.value)}
             required
           >
-            <option value="">Válassz</option>
+            <option value="" disabled>Mi a legmagasabb iskolai végzettséged?</option>
             <option value="Alapfok">Alapfok</option>
             <option value="Középfok">Középfok</option>
             <option value="Felsőfok">Felsőfok</option>
-          </select>
-        </label>
-        <label>
-          Nem:
-          <select
+          </Form.Control>
+        </Form.Group>
+  
+        <Form.Group controlId="formBasicGender">
+          <Form.Control 
+            as="select" 
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             required
           >
-            <option value="">Válassz</option>
+            <option value="" disabled>Mi a nemed?</option>
             <option value="férfi">Férfi</option>
             <option value="nő">Nő</option>
-          </select>
-        </label>
-    
-        <button type="submit" className="SignUpForm">Küldés</button>
-       
-      </form>
-    </div>
+          </Form.Control>
+        </Form.Group>
+  
+        <Button variant="primary" type="submit" className="SignUpForm">Küldés</Button>
+      </Form>
+    </Container>
   );
+  
 }
 
 export default SignUpForm;

@@ -10,11 +10,11 @@ function Home() {
     <div className="Home">
       <h1>Hello {user.profileData.name}!</h1>
       <div className="test-container">
-        <div className="b5-container">
+        <div >
           <h1>Big Five személyiség teszt</h1>
         <Link to='/big5'><button>Nyitsd meg a tesztet!</button></Link>
         </div>
-        <div className="skills-container">
+        <div >
         <h1>Készségek teszt</h1>
         <Link to='/skills'><button>Nyitsd meg a tesztet!</button></Link>
         </div>

@@ -16,7 +16,7 @@ function Big5() {
     "Együttérző és energikus ember vagyok.",
     "Kissé rendezetlen és szétszórt vagyok.",
     "Nyugodt, érzelmileg stabil vagyok.",
-    "„Hagyományos”, realista személyiség vagyok.",
+    "Hagyományos”, realista személyiség vagyok.",
   ];
 
   const categories = [
@@ -90,7 +90,7 @@ function Big5() {
   };
 
   return (
-    <div>
+    <div className="big5-container">
       <Link to="/home">
         <button className="back-button">Vissza</button>
       </Link>

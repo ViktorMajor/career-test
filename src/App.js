@@ -6,6 +6,8 @@ import Home from "./components/Home";
 import SignUpForm from './components/SignUpForm'
 import Big5 from './components/Big5'
 import Skills from "./components/Skills";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export const UserContext = createContext();
 export function UserProvider({ children }) {
