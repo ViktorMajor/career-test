@@ -18,3 +18,16 @@ button:hover {
 p {
   font-size: 14px;
 }
+
+@media (max-width: 600px) {
+  .home {
+    display: block;
+  }
+  .profile {
+    margin: 0
+  }
+
+  .landing-content>div {
+    width: 90%;
+  }
+}
