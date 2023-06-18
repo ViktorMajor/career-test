@@ -1,96 +1,122 @@
 .profile {
-  background-color: #E1DDDB;
-  color: #0C4A60;
+  background-color: #e1dddb;
+  color: #0c4a60;
   font-family: Arial, sans-serif;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 5px;
+  font-size: 0.7rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 900px;
-  margin: 50px auto;
+  margin: 0 3rem 0 1rem;
+  animation: slideInFromLeft 1s ease-in-out;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 h2 {
-  color: #EF6C33;
+  color: #ef6c33;
+  text-align: center;
+  margin: 20px 0;
 }
 
 p {
-  color: #0C4A60;
+  color: #0c4a60;
+  font-size: 1.1em;
 }
 
 .chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 }
 
 .results {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  margin: 2rem;
+  margin: 1rem 0;
+  border: 3px solid #ef6c33;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+  background-color: #abdff1;
 }
 
 .results p {
-  flex-basis: 50%;
+  margin: 5px 0;
+  font-size: 1.2em;
 }
-
 
 .big5-results,
 .skills-results {
-  background-color: #ABDFF1;
-  padding: 20px;
+  background-color: #abdff1;
+  padding: 5px;
   border-radius: 10px;
   margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .big5-results h2,
 .skills-results h2 {
-  color: #0C4A60;
+  color: #0c4a60;
+  text-align: center;
 }
 
 .big5-results p,
 .skills-results p {
-  color: #0C4A60;
-}
-.custom-tooltip {
-    background-color: #ffffe0;
-    padding: 10px;
-    border: 1px solid black;
+  color: #0c4a60;
 }
 
-.custom-tooltip .label {
-    margin-bottom: 0px;
-    font-weight: bold;
+.highest-categories,
+.advice {
+  font-weight: bold;
+  text-align: center;
 }
 
-.custom-tooltip .intro {
-    margin: 0px;
+.advice {
+  font-size: 1.5em;
+  color: #ef6c33;
 }
 
-.custom-tooltip .desc {
-    margin-top: 10px;
+.highest-categories {
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
+
 
 
 .custom-tooltip {
   background-color: rgba(12, 74, 96, 0.9);
   padding: 5px;
   border: 1px solid black;
-  font-size: .7rem;
+  font-size: 0.7rem;
   width: 25rem;
   border-radius: 5px;
 }
-
-.custom-tooltip .label {
-  margin-bottom: 0px;
-  font-weight: bold;
-  color: #ABDFF1;
-}
-
-.custom-tooltip .intro {
-  margin: 0px;
-  color: #ABDFF1;
-}
-
-.custom-tooltip .desc {
-  margin-top: 5px;
-  color: #ABDFF1;
+.custom-tooltip p {
+  color: #abdff1;
+  margin: 0;
 }

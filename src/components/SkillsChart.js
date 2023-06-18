@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../App';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
 import '../styles/chart.css';
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -42,11 +42,11 @@ const SkillsChart = () => {
   return (
     <div className="skills-chart-container">
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data} margin={{left:20, bottom: 40 }}>
+        <BarChart data={data} margin={{left:-30, bottom: 60 }}>
           <CartesianGrid className="cartesian-grid" strokeDasharray="3 3" />
-          <XAxis dataKey="name" angle={-50} textAnchor="end" tick={{fontSize: 12}} height={70} />
+          <XAxis dataKey="name" angle={-90} textAnchor="end" tick={{fontSize: 12}} height={70} />
           <YAxis domain={[0, 30]} tick={{fontSize: 12}}>
-            <Label value="Eredmény" angle={-90} position='insideLeft' style={{textAnchor: 'middle'}} />
+            
           </YAxis>
           <Tooltip cursor={{ className: 'tooltip-cursor' }} content={<CustomTooltip />} />
           <Bar className="bar" dataKey="Eredmény" radius={[10, 10, 0, 0]} />

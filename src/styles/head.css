@@ -1,6 +1,6 @@
 .header {
   background-color: #0C4A60;
-  color: white;
+  color: #ABDFF1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,7 +23,7 @@
 }
 
 .menu-link {
-  color: white;
+  color: #ABDFF1;
   text-decoration: none;
   transition: color 0.3s;
 }

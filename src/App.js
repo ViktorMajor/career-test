@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Head from './components/Head'
 import LandingPage from "./components/LandingPage";
+import Head from './components/Head'
 import Home from "./components/Home";
 import SignUpForm from './components/SignUpForm'
 import Big5 from './components/Big5'
@@ -29,8 +29,9 @@ function App() {
   return (
     <UserProvider>  
       <Router>
-        <div className="App">
-          <Head/>
+        <div className="app">
+        <Head/>
+          
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/home/*" element={<Home />} />

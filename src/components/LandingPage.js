@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import '../styles/Landing.css'
+import { Transition } from 'react-transition-group';
+import '../styles/Landing.css';
 
 function LandingPage() {
+  const nodeRef = useRef(null);
+  const [inProp, setInProp] = useState(false);
+
+  useEffect(() => {
+    setInProp(true);
+  }, []);
+
   return (
-    <div className="text-center landing-container">
-      <div className="landing-content">
-        <h1>Üdvözöllek!</h1>
-        <p>Ez egy egyszerű bemutató oldal, ahol rögzítheted személyes adataidat.</p>
-        <p>Az oldalon lévő űrlap segítségével könnyedén felviheted és tárolhatod személyes adataidat.</p>
-        <div className="button-container">
-          <Link to="/signup">
-            <button className="signup-button">
-               Személyes adatok rögzítése
-            </button>
-          </Link>
+    <Transition
+      nodeRef={nodeRef}
+      in={inProp}
+      timeout={500}
+      unmountOnExit
+      appear
+    >
+      {state => (
+        <div ref={nodeRef} className={`text-center landing-container ${state}`}>
+          <div className="landing-content">
+            <div>
+              <h1>Üdvözöllek!</h1>
+              <p>
+                Az oldal célja, hogy segítsen a pályaválasztásban és a munkaerőpiaci
+                döntésekben. Az űrlap kitöltése után kapsz ajánlásokat és tanácsokat,
+                melyek segíthetnek megtalálni a legmegfelelőbb pályát a számodra.
+              </p>
+              <div className="button-container">
+                <Link to="/signup">
+                  <button className="signup-button">
+                    <span className="icon"></span>
+                    Személyes adatok rögzítése
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Transition>
   );
 }
 

@@ -3,11 +3,13 @@
   color: #0C4A60;
   font-family: Arial, sans-serif;
   padding: 20px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .main {
-  max-width: 900px;
-  margin: auto;
+  max-width: 1000px;
+
 }
 
 h1 {
@@ -21,14 +23,16 @@ h1 {
 .tests-container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+
 }
 
 .test {
   background-color: #ABDFF1;
   padding: 20px;
   border-radius: 10px;
-  width: 45%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
 }
 
 .test h1 {

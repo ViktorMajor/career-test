@@ -93,3 +93,6 @@
 .submit-button:hover {
   background-color: #EF6C33;
 }
+.unanswered {
+  color: red;
+}

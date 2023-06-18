@@ -6,13 +6,20 @@
   background-color: #E1DDDB;
 }
 
+
 .landing-content {
-  max-width: 600px;
+  width: 100vw;
+  height: 100vh;
   padding: 20px;
   text-align: center;
   background-color: #0C4A60;
   color: #E1DDDB;
-  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.landing-content>div {
+  width: 40%;
 }
 .landing-content p {
   color: #E1DDDB;;
@@ -33,7 +40,23 @@
   align-items: center;
   justify-content: center;
 }
+.landing-container.entering {
+  opacity: 0;
+  transform: translateX(-100%);
+}
 
-.icon {
-  margin-right: 10px;
+.landing-container.entered {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.landing-container.exiting {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.landing-container.exited {
+  opacity: 0;
+  transition: opacity 500ms;
 }

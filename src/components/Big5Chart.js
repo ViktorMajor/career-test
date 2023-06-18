@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
-import { ResponsiveContainer, Label } from "recharts";
+import { ResponsiveContainer} from "recharts";
 
 const Big5Chart = () => {
   const { user } = useContext(UserContext);
@@ -44,22 +44,17 @@ const Big5Chart = () => {
   return (
     <div className="skills-chart-container">
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data} margin={{ left: 40, bottom: 40 }}>
+        <BarChart data={data} margin={{top: 10, bottom: 40, left:-30 }}>
           <CartesianGrid className="cartesian-grid" strokeDasharray="3 3" />
           <XAxis
             dataKey="name"
-            angle={-50}
+            angle={-90}
             textAnchor="end"
             tick={{ fontSize: 12 }}
             height={70}
           />
           <YAxis domain={[0, 8]} tick={{ fontSize: 12 }}>
-            <Label
-              value="Eredmény"
-              angle={-90}
-              position="insideLeft"
-              style={{ textAnchor: "middle" }}
-            />
+           
           </YAxis>
           <Tooltip
             content={<CustomTooltip />}

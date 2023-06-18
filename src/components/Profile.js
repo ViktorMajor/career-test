@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { UserContext } from "../App";
 import Big5Chart from "./Big5Chart";
 import SkillsChart from "./SkillsChart";
-
-import '../styles/profile.css'
+import "../styles/profile.css";
+import HighestBig5 from "./HighestBig5";
+import HighestSkills from "./HighestSkills";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -29,16 +30,20 @@ const Profile = () => {
       <div className="results-container">
         {user.bigFive && Object.entries(user.bigFive).length > 0 && (
           <div className="chart-container">
+            <h2>Big Five eredmények</h2>
             <div className="big5-results">
-              <h2>Big Five eredmények</h2>
-              <div className='results'>
+              
+              <div className="results">
+              <HighestBig5 />
                 {user.bigFive &&
-                  Object.entries(user.bigFive).map(([category, result], index) => (
-                    <p key={index}>
-                      <strong>{category}:</strong>
-                      {result.score}/7, {result.category}
-                    </p>
-                  ))}
+                  Object.entries(user.bigFive).map(
+                    ([category, result], index) => (
+                      <p key={index}>
+                        <strong>{category}: </strong>
+                        {result.category}
+                      </p>
+                    )
+                  )}
               </div>
               <Big5Chart />
             </div>
@@ -47,13 +52,16 @@ const Profile = () => {
 
         {user.skills && Object.entries(user.skills).length > 0 && (
           <div className="chart-container">
+            <h2>Képességek teszt eredmények</h2>
             <div className="skills-results">
-              <h2>Képességek teszt eredmények</h2>
-              <div className='results'>
+              
+              <div className="results">
+              <HighestSkills />
                 {user.skills &&
                   Object.entries(user.skills).map(([skill, result], index) => (
                     <p key={index}>
-                      <strong>{skill}:</strong> {result.score}/30, {result.performance}
+                      <strong>{skill}: </strong> {" "}
+                      {result.performance}
                     </p>
                   ))}
               </div>
@@ -62,10 +70,8 @@ const Profile = () => {
           </div>
         )}
       </div>
-
     </div>
   );
 };
-
 
 export default Profile;

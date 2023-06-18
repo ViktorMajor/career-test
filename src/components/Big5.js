@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../App";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../styles/tests.css'
 
 function Big5() {
   let navigate = useNavigate();
   const [answers, setAnswers] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  
   const questions = [
     "Extrovertált, nyitott, lelkes embernek tartom magam.",
     "Kritikus, gyakran kötekedő vagyok.",
@@ -35,15 +36,21 @@ function Big5() {
     "Tapasztalatra való nyitottság": 5.51,
     Extraverzió: 3.98,
   };
-
-  const handleInputChange = (questionNumber, value) => {
-    setAnswers((prev) => ({ ...prev, [questionNumber]: value }));
-  };
-
   const { user, setUser } = useContext(UserContext);
 
+  const handleInputChange = (questionNumber, value) => {
+    setAnswers((prev) => ({ ...prev, [questionNumber]: value !== "" ? value : null }));
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitted(true);
+
+    if (Object.keys(answers).length < questions.length) {
+      // Not all questions have been answered
+      alert("Kérjük, válaszoljon minden kérdésre.");
+      return;
+    }
 
     let results = evaluateResult();
     console.log(results);
@@ -57,6 +64,7 @@ function Big5() {
     });
     navigate("/home");
   };
+  
 
   const evaluateResult = () => {
     let results = {};
@@ -95,38 +103,46 @@ function Big5() {
       <Link to="/home">
         <button className="back-button">Vissza</button>
       </Link>
-      <h2 className="form-heading">Big Five személyiségjegyek</h2>
+      <h2 className="form-heading">Big Five Személyiségjegyek Értékelése</h2>
       <p>
-        A pályaválasztási döntés meghozatalánál érdemes figyelembe venni, hogy a
-        személyiségjegyeink nagymértékben befolyásolják, mennyire vagyunk
-        eredményesek, sikeresek a pályánkon. A kérdőív segít meghatározni, hogy
-        milyen mértékben rendelkezik a munkavállalás szempontjából legfontosabb
-        személyiségjegyekkel.
+        A karrierút kijelölése során fontos tényező az önreflexió, amelynek keretében mérlegre tesszük saját személyiségjegyeinket. Ezek a jellemzők meghatározóak abban, hogy milyen mértékben érezzük magunkat sikeresnek és elégedettnek a választott pályánkon. A kérdőív célja, hogy segítsen azonosítani a munkavállalás szempontjából legfontosabb személyiségjegyeid mértékét.
       </p>
+      <hr></hr>
+      <p>
+        A kérdésekre adott válaszaidat az alábbi skálán értékelheted: 1 - nagyon gyenge, 2 - gyenge, 3 - átlagos, 4 - jó, 5 - nagyon jó, 6 - kiváló, 7 - rendkívüli. Próbálj meg az első benyomásaidra hallgatni a kérdésekre adott válaszaidnál, ne tölts túl sok időt a gondolkodással.
+      </p>
+      <hr></hr>
+      <h5>Milyen mértékben rendelkezel az alábbi személyiségjegyekkel?</h5>
       <form className="form" onSubmit={handleSubmit}>
-  {questions.map((question, index) => (
-    <div key={index} className="question">
-      <label htmlFor={`question${index + 1}`}>{`${index + 1}. ${question}`}</label>
-      <div className="slider-container">
-        <input
-          type="range"
-          min="1"
-          max="7"
-          id={`question${index + 1}`}
-          name={`question${index + 1}`}
-          value={answers[index + 1] || ""}
-          onChange={(e) => handleInputChange(index + 1, e.target.value)}
-          required
-          list={`rating-list-${index + 1}`}
-        />
-        <div className="slider-value">{answers[index + 1] || "*"}</div>
-      </div>
-    </div>
-  ))}
-  <button type="submit" className="submit-button">Küldés</button>
-</form>
+        {questions.map((question, index) => (
+          <div key={index} className="question">
+            <label 
+              htmlFor={`question${index + 1}`} 
+              className={submitted && !(index + 1 in answers) ? "unanswered" : ""}
+            >
+              {`${index + 1}. ${question}`}
+            </label>
+            <div className="slider-container">
+              <input
+                type="range"
+                min="1"
+                max="7"
+                id={`question${index + 1}`}
+                name={`question${index + 1}`}
+                value={answers[index + 1] || ""}
+                onChange={(e) => handleInputChange(index + 1, e.target.value)}
+                required
+                list={`rating-list-${index + 1}`}
+              />
+              <div className="slider-value">{answers[index + 1] || "*"}</div>
+            </div>
+          </div>
+        ))}
+        <button type="submit" className="submit-button">Beküldés</button>
+      </form>
     </div>
   );
+
 }
 
 export default Big5;
