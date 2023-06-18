@@ -1,0 +1,33 @@
+.header {
+  background-color: #0C4A60;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container h1 {
+  margin-left: 15px;
+  font-size: 24px;
+}
+
+.menu-container {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.menu-link:hover {
+  color: #EF6C33;
+}

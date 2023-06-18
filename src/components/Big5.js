@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../App";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import '../styles/tests.css'
 
 function Big5() {
   let navigate = useNavigate();
@@ -24,7 +25,7 @@ function Big5() {
     { name: "Barátságosság", questions: [2, 7] },
     { name: "Lelkiismeretesség", questions: [3, 8] },
     { name: "Érzelmi stabilitás", questions: [4, 9] },
-    { name: "Tapasztalatra való nyitottság", questions: [5, 10] },
+    { name: "Nyitottság", questions: [5, 10] },
   ];
 
   const categoryAverages = {
@@ -90,7 +91,7 @@ function Big5() {
   };
 
   return (
-    <div className="big5-container">
+    <div className="test-container">
       <Link to="/home">
         <button className="back-button">Vissza</button>
       </Link>
@@ -102,38 +103,28 @@ function Big5() {
         milyen mértékben rendelkezik a munkavállalás szempontjából legfontosabb
         személyiségjegyekkel.
       </p>
-      <form onSubmit={handleSubmit}>
-        {questions.map((question, index) => (
-          <div key={index}>
-            <label htmlFor={`question${index + 1}`}>{`${
-              index + 1
-            }. ${question}:`}</label>
-            <input
-              type="range"
-              min="1"
-              max="7"
-              id={`question${index + 1}`}
-              name={`question${index + 1}`}
-              value={answers[index + 1] || ""}
-              onChange={(e) => handleInputChange(index + 1, e.target.value)}
-              required
-              list={`rating-list-${index + 1}`}
-              className="slider-input"
-            />
-            <datalist id={`rating-list-${index + 1}`} className="rating-list">
-              <option value="1"></option>
-              <option value="2"></option>
-              <option value="3"></option>
-              <option value="4"></option>
-              <option value="5"></option>
-              <option value="6"></option>
-              <option value="7"></option>
-            </datalist>
-            <div className="slider-value">{answers[index + 1] || "*"}</div>
-          </div>
-        ))}
-        <button type="submit">Küldés</button>
-      </form>
+      <form className="form" onSubmit={handleSubmit}>
+  {questions.map((question, index) => (
+    <div key={index} className="question">
+      <label htmlFor={`question${index + 1}`}>{`${index + 1}. ${question}`}</label>
+      <div className="slider-container">
+        <input
+          type="range"
+          min="1"
+          max="7"
+          id={`question${index + 1}`}
+          name={`question${index + 1}`}
+          value={answers[index + 1] || ""}
+          onChange={(e) => handleInputChange(index + 1, e.target.value)}
+          required
+          list={`rating-list-${index + 1}`}
+        />
+        <div className="slider-value">{answers[index + 1] || "*"}</div>
+      </div>
+    </div>
+  ))}
+  <button type="submit" className="submit-button">Küldés</button>
+</form>
     </div>
   );
 }

@@ -1,0 +1,40 @@
+.test-description {
+  background-color: #E1DDDB;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.test-description h2 {
+  color: #0C4A60;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.test-description h3 {
+  color: #EF6C33;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.test-description p {
+  color: #0C4A60;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.test-description ul {
+  margin-left: 20px;
+}
+
+.test-description li {
+  color: #0C4A60;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.test-description a {
+  color: #ABDFF1;
+  text-decoration: none;
+}

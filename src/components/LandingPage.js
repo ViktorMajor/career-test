@@ -1,22 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+
+import '../styles/Landing.css'
 
 function LandingPage() {
   return (
-    <Container className="text-center">
-      <Card className="mt-5 p-4">
+    <div className="text-center landing-container">
+      <div className="landing-content">
         <h1>Üdvözöllek!</h1>
         <p>Ez egy egyszerű bemutató oldal, ahol rögzítheted személyes adataidat.</p>
-        <div className="button-container mt-4">
+        <p>Az oldalon lévő űrlap segítségével könnyedén felviheted és tárolhatod személyes adataidat.</p>
+        <div className="button-container">
           <Link to="/signup">
-            <Button variant="success" size="lg"> Személyes adatok rögzítése</Button>
+            <button className="signup-button">
+               Személyes adatok rögzítése
+            </button>
           </Link>
         </div>
-      </Card>
-    </Container>
+      </div>
+    </div>
   );
 }
 

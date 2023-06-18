@@ -4,6 +4,7 @@ import { UserContext } from "../App";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import '../styles/signupForm.css';
 
 function SignUpForm() {
   const { setUser } = useContext(UserContext);
@@ -33,7 +34,7 @@ function SignUpForm() {
   return (
     <Container className="signup-container">
       <h1>Személyes adatok rögzítése</h1>
-      <Form onSubmit={handleSignUp}>
+      <Form onSubmit={handleSignUp} className='forms'>
         <Form.Group controlId="formBasicName">
           <Form.Control
             type="text"

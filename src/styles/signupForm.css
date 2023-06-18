@@ -1,0 +1,36 @@
+.signup-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #E1DDDB;
+  border-radius: 15px;
+  margin-top: 50px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.signup-container h1 {
+  color: #0C4A60;
+  margin-bottom: 30px;
+}
+
+.forms>div{
+  margin: 20px;
+} 
+
+.Form-control {
+  border-radius: 5px;
+  height: 45px;
+}
+
+.SignUpForm {
+  background-color: #EF6C33;
+  border: none;
+  color: #E1DDDB;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.SignUpForm:hover {
+  background-color: #d85920;
+}

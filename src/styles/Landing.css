@@ -1,0 +1,39 @@
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #E1DDDB;
+}
+
+.landing-content {
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+  background-color: #0C4A60;
+  color: #E1DDDB;
+  border-radius: 15px;
+}
+.landing-content p {
+  color: #E1DDDB;;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.signup-button {
+  padding: 10px 20px;
+  color: #E1DDDB;
+  background-color: #EF6C33;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  margin-right: 10px;
+}

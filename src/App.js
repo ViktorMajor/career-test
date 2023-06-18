@@ -7,6 +7,8 @@ import SignUpForm from './components/SignUpForm'
 import Big5 from './components/Big5'
 import Skills from "./components/Skills";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/app.css'
+
 
 
 export const UserContext = createContext();

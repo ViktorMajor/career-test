@@ -1,0 +1,96 @@
+.profile {
+  background-color: #E1DDDB;
+  color: #0C4A60;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  margin: 50px auto;
+}
+
+h2 {
+  color: #EF6C33;
+}
+
+p {
+  color: #0C4A60;
+}
+
+.chart-container {
+  margin-top: 20px;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2rem;
+}
+
+.results p {
+  flex-basis: 50%;
+}
+
+
+.big5-results,
+.skills-results {
+  background-color: #ABDFF1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.big5-results h2,
+.skills-results h2 {
+  color: #0C4A60;
+}
+
+.big5-results p,
+.skills-results p {
+  color: #0C4A60;
+}
+.custom-tooltip {
+    background-color: #ffffe0;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.custom-tooltip .label {
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.custom-tooltip .intro {
+    margin: 0px;
+}
+
+.custom-tooltip .desc {
+    margin-top: 10px;
+}
+
+
+.custom-tooltip {
+  background-color: rgba(12, 74, 96, 0.9);
+  padding: 5px;
+  border: 1px solid black;
+  font-size: .7rem;
+  width: 25rem;
+  border-radius: 5px;
+}
+
+.custom-tooltip .label {
+  margin-bottom: 0px;
+  font-weight: bold;
+  color: #ABDFF1;
+}
+
+.custom-tooltip .intro {
+  margin: 0px;
+  color: #ABDFF1;
+}
+
+.custom-tooltip .desc {
+  margin-top: 5px;
+  color: #ABDFF1;
+}
